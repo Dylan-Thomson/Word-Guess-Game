@@ -21,7 +21,6 @@ var game = {
         curentWord = this.pickWord();
         this.guesses = [];
         this.guessesRemaining = 10;
-        // this.wordDisplay = ("_ ").repeat(this.currentWord.length);
     },
     testGuess : function() {},
     revealLetter : function() {},
