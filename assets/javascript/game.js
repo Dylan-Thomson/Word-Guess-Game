@@ -15,6 +15,8 @@ var game = {
     guessesRemaining : 0,
     guesses : [],
     pickWord : function() {},
+
+    // Pick a new word, reset guesses
     newGame : function() {
         curentWord = this.pickWord();
         this.guesses = [];
