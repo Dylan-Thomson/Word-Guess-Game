@@ -16,5 +16,7 @@ var game = {
     pickWord : function() {},
     newGame : function() {},
     testGuess : function() {},
-
+    revealLetter : function() {},
+    updateGuesses : function() {},
+    gameOver : function() {}
 }
