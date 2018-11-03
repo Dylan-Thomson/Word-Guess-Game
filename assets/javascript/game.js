@@ -9,14 +9,22 @@
 
 var game = {
     words : [],
-    currentWord : [],
+    currentWord : "",
+    wordDisplay : "",
     wins : 0,
-    guessesRemaining : 10,
+    guessesRemaining : 0,
     guesses : [],
     pickWord : function() {},
-    newGame : function() {},
+    newGame : function() {
+        curentWord = this.pickWord();
+        this.guesses = [];
+        this.guessesRemaining = 10;
+        // this.wordDisplay = ("_ ").repeat(this.currentWord.length);
+    },
     testGuess : function() {},
     revealLetter : function() {},
     updateGuesses : function() {},
     gameOver : function() {}
 }
+
+game.newGame();
