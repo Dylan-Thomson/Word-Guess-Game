@@ -16,6 +16,7 @@ var game = {
     guessesRemaining : 0,
     guesses : [],
 
+    // Pick a random word
     pickWord : function() {
         this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];
         document.getElementById("currentWord").textContent = this.currentWord;
@@ -24,51 +25,54 @@ var game = {
         document.getElementById("wordDisplay").textContent = this.wordDisplay;
     },
 
-    
+    // Pick a new word, clear guesses and update guesses remaining
     newGame : function() {
         curentWord = this.pickWord();
         this.guesses = [];
         this.guessesRemaining = 10;
         document.getElementById("guesses").textContent = "";
-        document.getElementById("guessesRemaining").textContent = "10";
+        document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
         document.getElementById("guess").textContent = "";
     },
 
     testGuess : function(letter) {
-        if(letter.length === 1 && letter.match(/[a-z]/i)) {
-            if(!this.guesses.includes(letter)) {
-                document.getElementById("guess").textContent = letter;
-                this.updateGuesses(letter);
-                if(this.guessesRemaining >= 0) {
-                    if(this.currentWord.includes(letter)) {
-                        //Find every index where letter occurs
-                        var indices = [];
-                        for(var i = 0; i < this.currentWord.length; i++) {
-                            if(this.currentWord[i] === letter) {
-                                indices.push(i);
-                            }
-                        }
+        // If we haven't already guessed this letter, update guesses and test
+        if(!this.guesses.includes(letter)) {
+            document.getElementById("guess").textContent = letter;
+            this.updateGuesses(letter);
 
-                        //Update letters of wordDisplay at these indexes
-                        for(var i = 0; i < indices.length; i++) {
-                            this.wordDisplay = this.wordDisplay.substr(0, indices[i]) + letter + this.wordDisplay.substr(indices[i] + 1);
-                        }
-                        document.getElementById("wordDisplay").textContent = this.wordDisplay;
-
-                        //Compare wordDisplay with currentWord to see if we won the game
-                        if(this.currentWord === this.wordDisplay) {
-                            this.win();
+            // If we haven't already run out of guesses
+            if(this.guessesRemaining >= 0) {
+                // If current word contains our guess
+                if(this.currentWord.includes(letter)) {
+                    //Find every index where letter occurs
+                    var indices = [];
+                    for(var i = 0; i < this.currentWord.length; i++) {
+                        if(this.currentWord[i] === letter) {
+                            indices.push(i);
                         }
                     }
-                }
-                else { // Out of guesses, lose game
-                    this.lose();
+
+                    //Update letters of wordDisplay at these indexes and display revealed letters
+                    for(var i = 0; i < indices.length; i++) {
+                        this.wordDisplay = this.wordDisplay.substr(0, indices[i]) + letter + this.wordDisplay.substr(indices[i] + 1);
+                    }
+                    document.getElementById("wordDisplay").textContent = this.wordDisplay;
+
+                    //Compare new wordDisplay with currentWord to see if we won the game
+                    if(this.currentWord === this.wordDisplay) {
+                        this.win();
+                    }
                 }
             }
-            
+            // Out of guesses, lose game
+            else {
+                this.lose();
+            }
         }
     },
 
+    // Add current letter to guesses, reduces guesses remaining
     updateGuesses : function(letter) {
         this.guesses.push(letter);
         this.guessesRemaining--;
@@ -91,6 +95,9 @@ var game = {
 window.onload = function() {
     game.newGame();
     document.onkeyup = function(event) {
-        game.testGuess(event.key.toLowerCase());
+        var letter = event.key.toLowerCase();
+        if(letter.length === 1 && letter.match(/[a-z]/i)) {
+            game.testGuess(letter);
+        }
     }
 }
