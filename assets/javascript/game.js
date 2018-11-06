@@ -17,7 +17,7 @@ var game = {
         this.wordDisplay = new Array(this.currentWord.length + 1).join( "_" );
     },
     
-    // Pick a new word, clear guesses and update guesses remaining
+    // Pick new word and reset guesses
     newGame : function() {
         this.gameRunning = true;
         this.curentWord = this.pickWord();
@@ -25,8 +25,6 @@ var game = {
         this.guesses = [];
         this.guessesRemaining = 10;
         this.gameState = "";
-        
-        this.updateDisplay();
     },
     
     // TODO: REFACTOR AND FIX CASE WHERE USER LOSES DESPITE PICKING FINAL LETTER ON LAST GUESS
@@ -100,6 +98,7 @@ var game = {
 // Wait for everything to load before starting the game
 window.onload = function() {
     game.newGame();
+    game.updateDisplay();
     document.onkeyup = function(event) {
         if(game.gameRunning) {
             var letter = event.key.toLowerCase();
@@ -112,5 +111,6 @@ window.onload = function() {
 
     document.getElementById("btn-play-again").onclick = function(event){
         game.newGame();
+        game.updateDisplay();
     }
 }
