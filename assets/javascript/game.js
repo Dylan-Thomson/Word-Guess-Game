@@ -25,7 +25,7 @@ var game = {
         this.guesses = [];
         this.guessesRemaining = 10;
         document.getElementById("gameStatus").textContent = "";
-        document.getElementById("guesses").textContent = "";
+        document.getElementById("guesses").textContent = this.guesses;
         document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
         document.getElementById("guess").textContent = "";
     },
@@ -78,7 +78,7 @@ var game = {
         document.getElementById("guesses").textContent = this.guesses.join(" ").toUpperCase();
         document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
     },
-
+    
     lose : function() {
         // alert("You lost! The word was: " + this.currentWord);
         document.getElementById("gameStatus").textContent = "You lost!";
@@ -87,7 +87,7 @@ var game = {
         // this.newGame();
         this.gameRunning = false;
     },
-
+    
     win : function() {
         // alert("You won! The word was: " + this.currentWord);
         document.getElementById("gameStatus").textContent = "Winner!";
@@ -95,6 +95,12 @@ var game = {
         document.getElementById("wins").textContent = this.wins;
         // this.newGame();
         this.gameRunning = false;
+    },
+    
+    updateDisplay() {
+        document.getElementById("guesses").textContent = this.guesses.join(" ").toUpperCase();
+        document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
+
     }
 }
 
@@ -106,6 +112,7 @@ window.onload = function() {
             var letter = event.key.toLowerCase();
             if(letter.length === 1 && letter.match(/[a-z]/i)) {
                 game.testGuess(letter);
+                // game.updateDisplay();
             }
         }
     }
