@@ -1,6 +1,6 @@
 // Define our game object
 var game = {
-    words : ["cat", "dog", "potato", "moooo"],
+    words : ["cat", "dog", "potato", "moooo", "orangotang"],
     currentWord : "",
     wordDisplay : "",
     wins : 0,
@@ -71,7 +71,11 @@ var game = {
     updateGuesses : function(letter) {
         this.guesses.push(letter);
         this.guessesRemaining--;
-        document.getElementById("guesses").textContent = this.guesses;
+        this.displayGuesses();
+    },
+    
+    displayGuesses : function() {
+        document.getElementById("guesses").textContent = this.guesses.join(" ").toUpperCase();
         document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
     },
 
