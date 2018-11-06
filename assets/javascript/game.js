@@ -29,3 +29,7 @@ var game = {
 }
 
 game.newGame();
+
+document.onkeyup = function(event) {
+    document.getElementById("keyPress").textContent = event.key;
+}
