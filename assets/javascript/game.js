@@ -81,12 +81,12 @@ var game = {
     },
 
     lose : function() {
-        alert("You lost!");
+        alert("You lost! The word was: " + this.currentWord);
         this.newGame();
     },
 
     win : function() {
-        alert("You won!");
+        alert("You won! The word was: " + this.currentWord);
         this.newGame();
     }
 }
