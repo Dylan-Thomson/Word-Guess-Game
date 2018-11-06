@@ -1,20 +1,13 @@
-// Press any key to start
-// Display Wins
-// Pick a word from list
-// Display word like _ _ _ _
-// As user guesses reveal letters
-// Number of guesses remaining
-// Display letters already guessed
-// After win or loss pick new word and play again
-
 // Define our game object
 var game = {
     words : ["cat", "dog", "potato", "moooo"],
     currentWord : "",
     wordDisplay : "",
     wins : 0,
+    losses: 0,
     guessesRemaining : 0,
     guesses : [],
+    gameRunning: false,
 
     // Pick a random word
     pickWord : function() {
@@ -27,9 +20,11 @@ var game = {
 
     // Pick a new word, clear guesses and update guesses remaining
     newGame : function() {
+        this.gameRunning = true;
         curentWord = this.pickWord();
         this.guesses = [];
         this.guessesRemaining = 10;
+        document.getElementById("gameStatus").textContent = "";
         document.getElementById("guesses").textContent = "";
         document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
         document.getElementById("guess").textContent = "";
@@ -42,7 +37,7 @@ var game = {
             this.updateGuesses(letter);
 
             // If we haven't already run out of guesses
-            if(this.guessesRemaining >= 0) {
+            if(this.guessesRemaining > 0) {
                 // If current word contains our guess
                 if(this.currentWord.includes(letter)) {
                     //Find every index where letter occurs
@@ -81,13 +76,21 @@ var game = {
     },
 
     lose : function() {
-        alert("You lost! The word was: " + this.currentWord);
-        this.newGame();
+        // alert("You lost! The word was: " + this.currentWord);
+        document.getElementById("gameStatus").textContent = "You lost!";
+        this.losses++;
+        document.getElementById("losses").textContent = this.losses;
+        // this.newGame();
+        this.gameRunning = false;
     },
 
     win : function() {
-        alert("You won! The word was: " + this.currentWord);
-        this.newGame();
+        // alert("You won! The word was: " + this.currentWord);
+        document.getElementById("gameStatus").textContent = "Winner!";
+        this.wins++;
+        document.getElementById("wins").textContent = this.wins;
+        // this.newGame();
+        this.gameRunning = false;
     }
 }
 
@@ -95,9 +98,15 @@ var game = {
 window.onload = function() {
     game.newGame();
     document.onkeyup = function(event) {
-        var letter = event.key.toLowerCase();
-        if(letter.length === 1 && letter.match(/[a-z]/i)) {
-            game.testGuess(letter);
+        if(game.gameRunning) {
+            var letter = event.key.toLowerCase();
+            if(letter.length === 1 && letter.match(/[a-z]/i)) {
+                game.testGuess(letter);
+            }
         }
+    }
+
+    document.getElementById("btn-play-again").onclick = function(event){
+        game.newGame();
     }
 }
