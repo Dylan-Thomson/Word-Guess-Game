@@ -25,8 +25,6 @@ var game = {
         this.guesses = [];
         this.guessesRemaining = 10;
         this.gameState = "";
-
-        this.updateDisplay();
     },
     
     // Check if a new guess is in current word, and ask if game is over
@@ -41,7 +39,6 @@ var game = {
                     }
                     this.testGameOver();
                 }
-                this.updateDisplay();
             }
         }
     },
@@ -84,17 +81,5 @@ var game = {
         this.wins++;
         this.gameState = "You won! The word you were trying to guess is: " + this.currentWord;
         this.gameRunning = false;
-    },
-    
-    // Update text in DOM elements
-    updateDisplay() {
-        document.getElementById("currentWord").textContent = this.currentWord;
-        document.getElementById("wordDisplay").textContent = this.partialWord;
-        document.getElementById("guesses").textContent = this.guesses.join(", ").toUpperCase();
-        document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
-        document.getElementById("guess").textContent = this.currentGuess;
-        document.getElementById("gameStatus").textContent = this.gameState;
-        document.getElementById("wins").textContent = this.wins;
-        document.getElementById("losses").textContent = this.losses;
     }
 }
