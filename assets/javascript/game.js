@@ -2,7 +2,7 @@
 var game = {
     words : ["cat", "dog", "potato", "moooo", "orangotang"],
     currentWord : "",
-    wordDisplay : "",
+    partialWord : "",
     currentGuess : "",
     gameState : "",
     wins : 0,
@@ -14,52 +14,27 @@ var game = {
     // Pick a random word
     pickWord : function() {
         this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];   
-        this.wordDisplay = new Array(this.currentWord.length + 1).join( "_" );
+        this.partialWord = new Array(this.currentWord.length + 1).join( "_" );
     },
     
     // Pick new word and reset guesses
     newGame : function() {
+        this.pickWord();
         this.gameRunning = true;
-        this.curentWord = this.pickWord();
         this.currentGuess = "";
         this.guesses = [];
         this.guessesRemaining = 10;
         this.gameState = "";
     },
     
-    // TODO: REFACTOR AND FIX CASE WHERE USER LOSES DESPITE PICKING FINAL LETTER ON LAST GUESS
+    // Check if a new guess is in current word, and ask if game is over
     testGuess : function(letter) {
-        // If we haven't already guessed this letter, update guesses and test
         if(!this.guesses.includes(letter)) {
             this.updateGuesses(letter);
-            
-            // If we haven't already run out of guesses
-            if(this.guessesRemaining > 0) {
-                // If current word contains our guess
-                if(this.currentWord.includes(letter)) {
-                    //Find every index where letter occurs
-                    var indices = [];
-                    for(var i = 0; i < this.currentWord.length; i++) {
-                        if(this.currentWord[i] === letter) {
-                            indices.push(i);
-                        }
-                    }
-                    
-                    //Update letters of wordDisplay at these indexes and display revealed letters
-                    for(var i = 0; i < indices.length; i++) {
-                        this.wordDisplay = this.wordDisplay.substr(0, indices[i]) + letter + this.wordDisplay.substr(indices[i] + 1);
-                    }
-                    
-                    //Compare new wordDisplay with currentWord to see if we won the game
-                    if(this.currentWord === this.wordDisplay) {
-                        this.win();
-                    }
-                }
+            if(this.currentWord.includes(letter)) {
+                this.updatePartialWord(letter);
             }
-            // Out of guesses, lose game
-            else {
-                this.lose();
-            }
+            this.testGameOver();
         }
     },
     
@@ -68,6 +43,27 @@ var game = {
         this.currentGuess = letter;
         this.guesses.push(letter);
         this.guessesRemaining--;
+    },
+    
+    // Replace '_' with letters at indices matching the current wowrd
+    updatePartialWord : function(letter) {
+        var indices = [];
+        for(var i = 0; i < this.currentWord.length; i++) {
+            if(this.currentWord[i] === letter) indices.push(i);
+        }
+        for(var i = 0; i < indices.length; i++) {
+            this.partialWord = this.partialWord.substr(0, indices[i]) + letter + this.partialWord.substr(indices[i] + 1);
+        }
+    },
+    
+    // Check to see if game should end by comparing words and looking at remaining guesses
+    testGameOver : function() {
+        if(this.currentWord === this.partialWord) {
+            this.win();
+        }
+        else if(this.guessesRemaining <= 0) {
+            this.lose();
+        }
     },
     
     lose : function() {
@@ -82,13 +78,13 @@ var game = {
         this.gameRunning = false;
     },
     
+    // Update text in DOM elements
     updateDisplay() {
         document.getElementById("currentWord").textContent = this.currentWord;
-        document.getElementById("wordDisplay").textContent = this.wordDisplay;
-        document.getElementById("guesses").textContent = this.guesses.join(" ").toUpperCase();
+        document.getElementById("wordDisplay").textContent = this.partialWord;
+        document.getElementById("guesses").textContent = this.guesses.join(", ").toUpperCase();
         document.getElementById("guessesRemaining").textContent = this.guessesRemaining;
         document.getElementById("guess").textContent = this.currentGuess;
-        document.getElementById("wordDisplay").textContent = this.wordDisplay;
         document.getElementById("gameStatus").textContent = this.gameState;
         document.getElementById("wins").textContent = this.wins;
         document.getElementById("losses").textContent = this.losses;
