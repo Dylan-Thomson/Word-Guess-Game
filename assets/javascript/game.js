@@ -25,16 +25,24 @@ var game = {
         this.guesses = [];
         this.guessesRemaining = 10;
         this.gameState = "";
+
+        this.updateDisplay();
     },
     
     // Check if a new guess is in current word, and ask if game is over
-    testGuess : function(letter) {
-        if(!this.guesses.includes(letter)) {
-            this.updateGuesses(letter);
-            if(this.currentWord.includes(letter)) {
-                this.updatePartialWord(letter);
+    testGuess : function(event) {
+        if(this.gameRunning) {
+            var letter = event.key.toLowerCase();
+            if(letter.length === 1 && letter.match(/[a-z]/i)) {
+                if(!this.guesses.includes(letter)) {
+                    this.updateGuesses(letter);
+                    if(this.currentWord.includes(letter)) {
+                        this.updatePartialWord(letter);
+                    }
+                    this.testGameOver();
+                }
+                this.updateDisplay();
             }
-            this.testGameOver();
         }
     },
     
@@ -94,22 +102,14 @@ var game = {
 // Wait for everything to load before starting the game
 window.onload = function() {
     game.newGame();
-    game.updateDisplay();
 
     // User presses a key
     document.onkeyup = function(event) {
-        if(game.gameRunning) {
-            var letter = event.key.toLowerCase();
-            if(letter.length === 1 && letter.match(/[a-z]/i)) {
-                game.testGuess(letter);
-                game.updateDisplay();
-            }
-        }
+        game.testGuess(event);
     }
 
     // User hits "Play again"
     document.getElementById("btn-play-again").onclick = function(event){
         game.newGame();
-        game.updateDisplay();
     }
 }
