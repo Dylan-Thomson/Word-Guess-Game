@@ -99,6 +99,8 @@ var game = {
 window.onload = function() {
     game.newGame();
     game.updateDisplay();
+
+    // User presses a key
     document.onkeyup = function(event) {
         if(game.gameRunning) {
             var letter = event.key.toLowerCase();
@@ -109,6 +111,7 @@ window.onload = function() {
         }
     }
 
+    // User hits "Play again"
     document.getElementById("btn-play-again").onclick = function(event){
         game.newGame();
         game.updateDisplay();
