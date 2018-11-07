@@ -1,29 +1,38 @@
-// Update DOM elements with current game state
+// Update DOM elements with current wordGame state
 function updateDisplay() {
-    document.getElementById("currentWord").textContent = game.currentWord;
-    document.getElementById("wordDisplay").textContent = game.partialWord;
-    document.getElementById("guesses").textContent = game.guesses.join(", ").toUpperCase();
-    document.getElementById("guessesRemaining").textContent = game.guessesRemaining;
-    document.getElementById("guess").textContent = game.currentGuess;
-    document.getElementById("gameStatus").textContent = game.gameState;
-    document.getElementById("wins").textContent = game.wins;
-    document.getElementById("losses").textContent = game.losses;
+    document.getElementById("currentWord").textContent = wordGame.currentWord;
+    document.getElementById("wordDisplay").textContent = wordGame.partialWord;
+    document.getElementById("guesses").textContent = wordGame.guesses.join(", ").toUpperCase();
+    document.getElementById("guessesRemaining").textContent = wordGame.guessesRemaining;
+    document.getElementById("guess").textContent = wordGame.currentGuess;
+    document.getElementById("gameStatus").textContent = wordGame.gameState;
+    document.getElementById("wins").textContent = wordGame.wins;
+    document.getElementById("losses").textContent = wordGame.losses;
 }
 
 // Wait for everything to load before starting the game
 window.onload = function() {
-    game.newGame();
+    wordGame.wordList = [
+        "Orange",
+        "Apple",
+        "Banana",
+        "Grapefruit",
+        "Blueberry",
+        "Raspberry"
+    ];
+
+    wordGame.newGame();
     updateDisplay();
 
     // User presses a key
     document.onkeyup = function(event) {
-        game.testGuess(event);
+        wordGame.testGuess(event);
         updateDisplay();
     }
 
     // User hits "Play again"
     document.getElementById("btn-play-again").onclick = function(event){
-        game.newGame();
+        wordGame.newGame();
         updateDisplay();
     }
 }

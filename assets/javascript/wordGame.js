@@ -1,5 +1,5 @@
 // Define our game object
-var game = {
+var wordGame = {
     words : ["cat", "dog", "potato", "moooo", "orangotang"],
     currentWord : "",
     partialWord : "",
@@ -10,6 +10,14 @@ var game = {
     guessesRemaining : 0,
     guesses : [],
     gameRunning: false,
+
+    // Set a new word list and convert words to lowercase
+    set wordList(arr) {
+        this.words = [];
+        for(var i = 0; i < arr.length; i++) {
+            this.words.push(arr[i].toLowerCase());
+        }
+    },
 
     // Pick a random word
     pickWord : function() {
@@ -23,7 +31,7 @@ var game = {
         this.gameRunning = true;
         this.currentGuess = "";
         this.guesses = [];
-        this.guessesRemaining = 10;
+        this.guessesRemaining = 12;
         this.gameState = "";
     },
     
