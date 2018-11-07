@@ -22,7 +22,16 @@ var wordGame = {
     // Pick a random word
     pickWord : function() {
         this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];   
-        this.partialWord = new Array(this.currentWord.length + 1).join( "_" );
+        this.partialWord = [];
+        for(var i = 0; i < this.currentWord.length; i++) {
+            if(this.currentWord[i].match(/[a-z]/i)) {
+                this.partialWord.push("_");
+            }
+            else {
+                this.partialWord.push(this.currentWord[i]);
+            }
+        }
+        this.partialWord = this.partialWord.join("");
     },
     
     // Pick new word and reset guesses

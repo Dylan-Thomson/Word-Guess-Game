@@ -18,7 +18,10 @@ window.onload = function() {
         "Banana",
         "Grapefruit",
         "Blueberry",
-        "Raspberry"
+        "Raspberry",
+        "Rotten Apple",
+        "Fruit is very good for you!",
+        "Fruit juice is meh..."
     ];
 
     wordGame.newGame();
