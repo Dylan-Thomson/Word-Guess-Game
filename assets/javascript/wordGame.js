@@ -7,7 +7,7 @@ var wordGame = {
     gameState : "",
     wins : 0,
     losses: 0,
-    guessesRemaining : 0,
+    guessesRemaining : 12,
     guesses : [],
     gameRunning: false,
 
@@ -54,17 +54,19 @@ var wordGame = {
                     if(this.currentWord.includes(letter)) {
                         this.updatePartialWord(letter);
                     }
+                    else {
+                        this.guessesRemaining--;
+                    }
                     this.testGameOver();
                 }
             }
         }
     },
     
-    // Add current letter to guesses, reduces guesses remaining
+    // Add current letter to guesses
     updateGuesses : function(letter) {
         this.currentGuess = letter;
         this.guesses.push(letter);
-        this.guessesRemaining--;
     },
     
     // Replace '_' with letters at indices matching the current wowrd
