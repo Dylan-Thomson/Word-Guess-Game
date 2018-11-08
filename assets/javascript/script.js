@@ -37,9 +37,8 @@ var words = {
     XML : "extensible markup language",
 };
 
-
-// Update DOM elements with current wordGame state
-function updateDisplay() {
+// Redefine default so that we write to HTML
+wordGame.updateDisplay = function() {
     document.getElementById("wordDisplay").textContent = wordGame.partialWord.toUpperCase();
     document.getElementById("hint").textContent = wordGame.hint;
     document.getElementById("guesses").textContent = wordGame.guesses.join(", ").toUpperCase();
@@ -57,19 +56,16 @@ window.onload = function() {
 
     //Start a new game and update page
     wordGame.newGame();
-    updateDisplay();
 
     // User presses a key
     document.onkeyup = function(event) {
         // Test guess and update page
-        wordGame.testGuess(event);
-        updateDisplay();
+        wordGame.testGuess(event.key);
     }
 
     // User hits "Play again"
     document.getElementById("btn-play-again").onclick = function(event){
         // Start a new game and update page
         wordGame.newGame();
-        updateDisplay();
     }
 }

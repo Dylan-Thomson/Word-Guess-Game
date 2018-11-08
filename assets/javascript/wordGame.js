@@ -52,12 +52,14 @@ var wordGame = {
         this.guesses = [];
         this.guessesRemaining = 12;
         this.gameState = "Press a key to guess a letter!";
+
+        this.updateDisplay();
     },
     
     // Check if a new guess is in current word, and ask if game is over
-    testGuess : function(event) {
+    testGuess : function(letter) {
         if(this.gameRunning) {
-            var letter = event.key.toLowerCase();
+            var letter = letter.toLowerCase();
             if(letter.length === 1 && letter.match(/[a-z]/i)) {
                 if(!this.guesses.includes(letter)) {
                     this.updateGuesses(letter);
@@ -69,6 +71,8 @@ var wordGame = {
                     }
                     this.testGameOver();
                 }
+
+                this.updateDisplay();
             }
         }
     },
@@ -110,6 +114,17 @@ var wordGame = {
         this.wins++;
         this.gameState = "You won! The word you were trying to guess is: " + this.currentWord;
         this.gameRunning = false;
-    }
+    },
     
+    // Default update display just writes to console
+    updateDisplay : function() {
+        console.log("Game state:", this.gameState);
+        console.log("Hint:", this.hint);
+        console.log("Partial word:", this.partialWord);
+        console.log("Curent guess:", this.guess);
+        console.log("Guesses:", this.guesses);
+        console.log("Guesses remaining:", this.guessesRemaining);
+        console.log("Wins:", this.wins);
+        console.log("Losses:", this.losses);
+    }
 }
