@@ -11,24 +11,29 @@
         <script src="assets/javascript/wordGame.js"></script>
         <script src="assets/javascript/script.js"></script>
     </head>
-    <body class="bg-dark text-light">
+    <body class="bg-light">
         <div class="container-fluid mt-5">
             <div class="row">
-                <div class="col-12 text-center m-auto">
-                    <h1>Web Dev Acronyms</h1>
-                    <p id="gameStatus"></p>
-                    <p>Acronym: <span id="hint"></span></p>
-                    <p id="wordDisplay"></p>
-                    <p>Guess: <span id="guess"></span></p>
-                    <p>Guesses: <span id="guesses"></span></p>
-                    <p>Guesses Remaining: <span id="guessesRemaining"></span></p>
-                    <p>Wins: <span id="wins"></span></p>
-                    <p>Losses: <span id="losses"></span></p>
-                    <button class="btn btn-primary inline" id="btn-new-game">New Game</button>
+                <div class="col-md-6 text-center m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">Web Dev Acronyms</h1>
+                            <p id="gameStatus"></p>
+                            <p>Acronym: <span id="hint"></span></p>
+                            <p id="wordDisplay"></p>
+                            <p>Guess: <span id="guess"></span></p>
+                            <p>Guesses: <span id="guesses"></span></p>
+                            <p>Guesses Remaining: <span id="guessesRemaining"></span></p>
+                            <p>Wins: <span id="wins"></span></p>
+                            <p>Losses: <span id="losses"></span></p>
+                            <button class="btn btn-primary inline" id="btn-new-game">New Game</button>
+                        </div>
+                    </div>
+                    <!-- <h1>Web Dev Acronyms</h1> -->
                 </div>
             </div>
         </div>
-        <!-- <footer class="navbar nav-dark bg-dark fixed-bottom text-light border-top border-primary">
+        <footer class="navbar nav-dark bg-dark fixed-bottom text-light border-top border-primary">
             <p class="text-center m-auto">Copyright &copy;
                 <script>
                     var d = new Date()
@@ -36,6 +41,6 @@
                 </script> 
                 <a class="text-primary" href="https://github.com/Dylan-Thomson" target="_blank"> Dylan Thomson</a>
                 </p>
-        </footer> -->
+        </footer>
     </body>
 </html>
