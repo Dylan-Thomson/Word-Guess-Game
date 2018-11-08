@@ -101,4 +101,5 @@ var wordGame = {
         this.gameState = "You won! The word you were trying to guess is: " + this.currentWord;
         this.gameRunning = false;
     }
+    
 }

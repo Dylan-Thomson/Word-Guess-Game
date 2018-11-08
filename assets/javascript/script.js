@@ -1,7 +1,7 @@
 // Update DOM elements with current wordGame state
 function updateDisplay() {
     document.getElementById("currentWord").textContent = wordGame.currentWord;
-    document.getElementById("wordDisplay").textContent = wordGame.partialWord;
+    document.getElementById("wordDisplay").textContent = wordGame.partialWord.toUpperCase();
     document.getElementById("guesses").textContent = wordGame.guesses.join(", ").toUpperCase();
     document.getElementById("guessesRemaining").textContent = wordGame.guessesRemaining;
     document.getElementById("guess").textContent = wordGame.currentGuess;
