@@ -106,13 +106,14 @@ var wordGame = {
     
     lose : function() {
         this.losses++;
-        this.gameState = "You lost. The word you were trying to guess is: " + this.currentWord;
+        this.gameState = "You lost.";
+        this.partialWord = this.currentWord;
         this.gameRunning = false;
     },
     
     win : function() {
         this.wins++;
-        this.gameState = "You won! The word you were trying to guess is: " + this.currentWord;
+        this.gameState = "You won!";
         this.gameRunning = false;
     },
     
