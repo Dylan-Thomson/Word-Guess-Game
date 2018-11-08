@@ -48,7 +48,7 @@ var wordGame = {
     guessesRemaining : 12,
     guesses : [],
     gameRunning: false,
-    
+
     // Set a new word list and convert words to lowercase
     // TODO REDO
     set wordList(arr) {
@@ -85,7 +85,7 @@ var wordGame = {
         this.currentGuess = "";
         this.guesses = [];
         this.guessesRemaining = 12;
-        this.gameState = "";
+        this.gameState = "Press a key to guess a letter!";
     },
     
     // Check if a new guess is in current word, and ask if game is over
