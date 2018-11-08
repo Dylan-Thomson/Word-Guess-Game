@@ -1,42 +1,8 @@
 // Define our game object
 var wordGame = {
-    // words : ["cat", "dog", "potato", "moooo", "orangotang"],
     words : {
-        AJAX : "asynchronous javascript and xml",
-        API : "application programming interface",
-        CMS : "content management system",
-        CSS : "cascading style sheets",
-        CRON : "command run on",
-        CRUD : "create read update delete",
-        DOM : "document object model",
-        FTP : "file transfer protocol",
-        GIF : "graphics interchange format",
-        HTML : "hypertext markup language",
-        HTTP : "hypertext transfer protocol",
-        HTTPS : "hypertext transfer protocol secure",
-        JPEG : "joint photographic experts group",
-        JS : "javascript",
-        JSON : "javascript object notation",
-        LAMP : "linux apache mysql php",
-        MVC : "model view controller",
-        NaN : "not a number",
-        OAuth : "open authentication",
-        OOP : "object oriented programming",
-        OSS : "open source software",
-        PDF : "portable document format",
-        PNG : "portable network graphics",
-        QA : "quality assurance",
-        REST : "representational state transfer",
-        SEO : "search engine optimization",
-        SQL : "structure query language",
-        SVG : "scalable vector graphics",
-        URL : "uniform resource locator",
-        UTF : "unicode transmission format",
-        UX : "user experience",
-        VCS : "version control system",
-        WWW : "world wide web",
-        WYSIWYG : "what you see is what you get",
-        XML : "extensible markup language",
+        TEST : "test word",
+        XMAS : "be sure to drink your ovaltine"
     },
     currentWord : "",
     hint : "",
@@ -50,11 +16,13 @@ var wordGame = {
     gameRunning: false,
 
     // Set a new word list and convert words to lowercase
-    // TODO REDO
-    set wordList(arr) {
-        this.words = [];
-        for(var i = 0; i < arr.length; i++) {
-            this.words.push(arr[i].toLowerCase());
+    setWordList(newWords) {
+        var key, keys = Object.keys(newWords);
+        var n = keys.length;
+        this.words = {};
+        while(n--) {
+            key = keys[n];
+            this.words[key] = newWords[key].toLowerCase();
         }
     },
 
