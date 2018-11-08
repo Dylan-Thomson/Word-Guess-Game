@@ -11,7 +11,7 @@ var wordGame = {
     gameState : "",
     wins : 0,
     losses: 0,
-    guessesRemaining : 12,
+    guessesRemaining : 6,
     guesses : [],
     gameRunning: false,
 
@@ -50,7 +50,7 @@ var wordGame = {
         this.gameRunning = true;
         this.currentGuess = "";
         this.guesses = [];
-        this.guessesRemaining = 12;
+        this.guessesRemaining = 6;
         this.gameState = "Press a key to guess a letter!";
 
         this.displayState();
@@ -116,7 +116,7 @@ var wordGame = {
         this.gameRunning = false;
     },
     
-    // Displays current game state
+    // Displays current game state in console
     displayState : function() {
         console.log("Game state:", this.gameState);
         console.log("Hint:", this.hint);
