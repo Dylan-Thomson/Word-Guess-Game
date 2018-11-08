@@ -1,7 +1,45 @@
 // Define our game object
 var wordGame = {
-    words : ["cat", "dog", "potato", "moooo", "orangotang"],
+    // words : ["cat", "dog", "potato", "moooo", "orangotang"],
+    words : {
+        AJAX : "asynchronous javascript and xml",
+        API : "application programming interface",
+        CMS : "content management system",
+        CSS : "cascading style sheets",
+        CRON : "command run on",
+        CRUD : "create read update delete",
+        DOM : "document object model",
+        FTP : "file transfer protocol",
+        GIF : "graphics interchange format",
+        HTML : "hypertext markup language",
+        HTTP : "hypertext transfer protocol",
+        HTTPS : "hypertext transfer protocol secure",
+        JPEG : "joint photographic experts group",
+        JS : "javascript",
+        JSON : "javascript object notation",
+        LAMP : "linux apache mysql php",
+        MVC : "model view controller",
+        NaN : "not a number",
+        OAuth : "open authentication",
+        OOP : "object oriented programming",
+        OSS : "open source software",
+        PDF : "portable document format",
+        PNG : "portable network graphics",
+        QA : "quality assurance",
+        REST : "representational state transfer",
+        SEO : "search engine optimization",
+        SQL : "structure query language",
+        SVG : "scalable vector graphics",
+        URL : "uniform resource locator",
+        UTF : "unicode transmission format",
+        UX : "user experience",
+        VCS : "version control system",
+        WWW : "world wide web",
+        WYSIWYG : "what you see is what you get",
+        XML : "extensible markup language",
+    },
     currentWord : "",
+    hint : "",
     partialWord : "",
     currentGuess : "",
     gameState : "",
@@ -10,8 +48,9 @@ var wordGame = {
     guessesRemaining : 12,
     guesses : [],
     gameRunning: false,
-
+    
     // Set a new word list and convert words to lowercase
+    // TODO REDO
     set wordList(arr) {
         this.words = [];
         for(var i = 0; i < arr.length; i++) {
@@ -19,9 +58,14 @@ var wordGame = {
         }
     },
 
-    // Pick a random word
+    // Pick a random word with its hint, and set up currentWord, hint, and partialWord variables
     pickWord : function() {
-        this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];   
+        // Hint is a random key from our words object
+        this.hint = Object.keys(this.words)[Math.floor(Math.random() * Object.keys(this.words).length)];
+        this.currentWord = this.words[this.hint];
+
+        console.log(this.hint, this.currentWord);
+
         this.partialWord = [];
         for(var i = 0; i < this.currentWord.length; i++) {
             if(this.currentWord[i].match(/[a-z]/i)) {
