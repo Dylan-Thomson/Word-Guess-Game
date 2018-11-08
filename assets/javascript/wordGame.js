@@ -17,12 +17,10 @@ var wordGame = {
 
     // Set a new word list and convert words to lowercase
     setWordList(newWords) {
-        var key, keys = Object.keys(newWords);
-        var n = keys.length;
         this.words = {};
-        while(n--) {
-            key = keys[n];
-            this.words[key] = newWords[key].toLowerCase();
+        var keys = Object.keys(newWords);
+        for(var i = 0; i < keys.length; i++) {
+            this.words[keys[i]] = newWords[keys[i]].toLowerCase();
         }
     },
 
