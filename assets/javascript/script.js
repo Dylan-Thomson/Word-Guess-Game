@@ -37,8 +37,8 @@ var words = {
     XML : "extensible markup language",
 };
 
-// Redefine default so that we write to HTML
-wordGame.updateDisplay = function() {
+// Redefine so that it writes data to web page
+wordGame.displayState = function() {
     document.getElementById("wordDisplay").textContent = wordGame.partialWord.toUpperCase();
     document.getElementById("hint").textContent = wordGame.hint;
     document.getElementById("guesses").textContent = wordGame.guesses.join(", ").toUpperCase();

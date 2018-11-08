@@ -53,7 +53,7 @@ var wordGame = {
         this.guessesRemaining = 12;
         this.gameState = "Press a key to guess a letter!";
 
-        this.updateDisplay();
+        this.displayState();
     },
     
     // Check if a new guess is in current word, and ask if game is over
@@ -72,7 +72,7 @@ var wordGame = {
                     this.testGameOver();
                 }
 
-                this.updateDisplay();
+                this.displayState();
             }
         }
     },
@@ -116,8 +116,8 @@ var wordGame = {
         this.gameRunning = false;
     },
     
-    // Default update display just writes to console
-    updateDisplay : function() {
+    // Displays current game state
+    displayState : function() {
         console.log("Game state:", this.gameState);
         console.log("Hint:", this.hint);
         console.log("Partial word:", this.partialWord);
