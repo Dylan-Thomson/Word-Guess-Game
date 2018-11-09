@@ -19,14 +19,40 @@
                     <div class="card bg-dark text-light p-0">
                         <h1 class="card-header">Web Dev Acronyms</h1>
                         <div class="card-body">
+                            <!-- <div class="row d-flex space-around">
+                                <div class="col-md-6">
+                                    Guesses Remaining <span id="guessesRemaining" class="badge badge-light"></span>
+
+                                </div>
+                                <div class="col-md-3">
+                                    Wins <span id="wins" class="badge badge-light"></span>
+
+                                </div>
+                                <div class="col-md-3">
+                                    Losses <span id="losses" class="badge badge-light"></span>
+
+                                </div>
+                            </div> -->
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    Guesses <span id="guessesRemaining" class="badge badge-light"></span>
+                                    
+                                </li>
+                                <li class="list-inline-item">
+                                    Wins <span id="wins" class="badge badge-light"></span>
+                                    
+                                </li>
+                                <li class="list-inline-item">
+                                    Losses <span id="losses" class="badge badge-light"></span>
+
+                                </li>
+                            </ul>
                             <p id="gameStatus"></p>
                             <p>Acronym: <span id="hint"></span></p>
                             <p id="wordDisplay"></p>
-                            <p>Guess: <span id="guess"></span></p>
-                            <p>Guesses: <span id="guesses"></span></p>
-                            <p>Guesses Remaining: <span id="guessesRemaining"></span></p>
-                            <p>Wins: <span id="wins"></span></p>
-                            <p>Losses: <span id="losses"></span></p>
+                            <p>
+                            </p>
+                            <p>Previous guesses: <span id="guesses"></span></p>
                             <button class="btn btn-primary inline" id="btn-new-game">New Game</button>
                         </div>
                         <div class="card-footer">

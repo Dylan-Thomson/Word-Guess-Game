@@ -7,7 +7,6 @@ var wordGame = {
     currentWord : "",
     hint : "",
     partialWord : "",
-    currentGuess : "",
     gameState : "",
     wins : 0,
     losses: 0,
@@ -48,7 +47,6 @@ var wordGame = {
     newGame : function() {
         this.pickWord();
         this.gameRunning = true;
-        this.currentGuess = "";
         this.guesses = [];
         this.guessesRemaining = 6;
         this.gameState = "Press a key to guess a letter!";
@@ -79,7 +77,6 @@ var wordGame = {
     
     // Add current letter to guesses
     updateGuesses : function(letter) {
-        this.currentGuess = letter;
         this.guesses.push(letter);
     },
     

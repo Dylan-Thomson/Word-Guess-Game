@@ -4,15 +4,11 @@ html, body {
 
 body {
     background: url("../images/random_grey_variations.png");
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 h1 {
     font-family: 'Roboto', sans-serif;
-}
-
-p, button {
-    font-family: 'Roboto Condensed', sans-serif;
-    
 }
 
 #wordDisplay {
@@ -21,3 +17,4 @@ p, button {
     /* font-family: 'Share Tech Mono', monospace; */
     font-family: 'Roboto Mono', monospace;
 }
+
