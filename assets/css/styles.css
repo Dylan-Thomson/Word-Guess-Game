@@ -1,5 +1,23 @@
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    background: url("../images/random_grey_variations.png");
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+}
+
+p, button {
+    font-family: 'Roboto Condensed', sans-serif;
+    
+}
+
 #wordDisplay {
-    letter-spacing: 0.25em;
-    word-spacing: 0.5em;
-    font-family: monospace;
+    /* letter-spacing: 0.15em;
+    word-spacing: 0.15em; */
+    /* font-family: 'Share Tech Mono', monospace; */
+    font-family: 'Roboto Mono', monospace;
 }
