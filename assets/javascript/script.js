@@ -35,7 +35,6 @@ var words = {
     WWW : "world wide web",
     WYSIWYG : "what you see is what you get",
     XML : "extensible markup language",
-    test : "abc123"
 };
 
 // Redefine so that it writes data to web page
