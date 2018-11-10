@@ -35,6 +35,7 @@ var words = {
     WWW : "world wide web",
     WYSIWYG : "what you see is what you get",
     XML : "extensible markup language",
+    test : "abc123"
 };
 
 // Redefine so that it writes data to web page
@@ -43,7 +44,6 @@ wordGame.displayState = function() {
     document.getElementById("hint").textContent = wordGame.hint;
     document.getElementById("guesses").textContent = wordGame.guesses.join(", ").toUpperCase();
     document.getElementById("guessesRemaining").textContent = wordGame.guessesRemaining;
-    // document.getElementById("guess").textContent = wordGame.currentGuess;
     document.getElementById("gameStatus").textContent = wordGame.gameState;
     document.getElementById("wins").textContent = wordGame.wins;
     document.getElementById("losses").textContent = wordGame.losses;

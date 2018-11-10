@@ -55,14 +55,14 @@ var wordGame = {
     },
     
     // Check if a new guess is in current word, and ask if game is over
-    testGuess : function(letter) {
+    testGuess : function(guess) {
         if(this.gameRunning) {
-            var letter = letter.toLowerCase();
-            if(letter.length === 1 && letter.match(/[a-z]/i)) {
-                if(!this.guesses.includes(letter)) {
-                    this.updateGuesses(letter);
-                    if(this.currentWord.includes(letter)) {
-                        this.updatePartialWord(letter);
+            var guess = guess.toLowerCase();
+            if(guess.length === 1 && guess.match(/[a-z]/i)) {
+                if(!this.guesses.includes(guess)) {
+                    this.updateGuesses(guess);
+                    if(this.currentWord.includes(guess)) {
+                        this.updatePartialWord(guess);
                     }
                     else {
                         this.guessesRemaining--;
