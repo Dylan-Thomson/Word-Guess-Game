@@ -66,6 +66,8 @@ window.onload = function() {
     // User hits "Play again"
     document.getElementById("btn-new-game").onclick = function(event){
         // Start a new game and update page
-        wordGame.newGame();
+        if(!wordGame.gameRunning) {
+            wordGame.newGame();
+        }
     }
 }
